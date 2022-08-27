@@ -6,8 +6,6 @@
 #include <string.h>
 #include <unistd.h>
 #include <stdlib.h>
-#include <netdb.h>
-#include <sys/types.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>
 
@@ -26,7 +24,7 @@ int main(int argc, char *argv[]) {
     }
 
     // 2. 将服务端用于通信的地址和端口绑定到socket上
-    struct sockaddr_in server_addr; // 存储服务端地址信息的数据结构
+    struct sockaddr_in server_addr{}; // 存储服务端地址信息的数据结构
     memset(&server_addr, 0, sizeof(server_addr));//将server_addr变量重置为0。memset(初始化的内存地址，初始化值，要初始化块的大小)
     server_addr.sin_family = AF_INET;   // 协议族，socket编程中只能是AF_INET
     server_addr.sin_addr.s_addr = htonl(INADDR_ANY);    // 任意IP地址
@@ -62,7 +60,7 @@ int main(int argc, char *argv[]) {
     // 4. 接受客户端的连接
     int client_file_desc;       // 客户端的socket
     int socklen = sizeof(struct sockaddr_in);   // struct sockaddr_in 的大小
-    struct sockaddr_in client_addr;     // 客户端的地址信息
+    struct sockaddr_in client_addr{};     // 客户端的地址信息
     /*
      * int accept(int sock, struct sockaddr *addr, socklen_t *addrlen)
      * sock：用socket()创建的文件描述符；

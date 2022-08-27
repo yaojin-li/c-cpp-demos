@@ -28,4 +28,5 @@ mvnw
 mvnw.cmd
 .mvn
 
+cmake-build-debug
 
